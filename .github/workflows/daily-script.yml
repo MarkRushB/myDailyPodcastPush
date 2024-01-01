@@ -21,4 +21,4 @@ jobs:
         pip install requests
 
     - name: Run script
-      run: python path/to/your/script.py
+      run: python dailyPush.py
