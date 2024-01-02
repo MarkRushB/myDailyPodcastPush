@@ -24,3 +24,6 @@ jobs:
 
     - name: Run script
       run: python dailyPush.py
+      env:
+        BARK_API: ${{ secrets.BARK_API }}
+        PODCAST_HOT_EPISODES: ${{ secrets.PODCAST_HOT_EPISODES }}
