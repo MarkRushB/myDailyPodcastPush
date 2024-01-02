@@ -3,11 +3,9 @@ import json
 import os
 import time
 
-# BARK_API = os.environ.get("BARK_API")
-# PODCAST_HOT_EPISODES_API = os.environ.get("PODCAST_HOT_EPISODES")
+BARK_API = os.environ.get("BARK_API")
+PODCAST_HOT_EPISODES_API = os.environ.get("PODCAST_HOT_EPISODES")
 
-BARK_API = "https://api.day.app/hoT3H6LmihHPftm4MFGqFX"
-PODCAST_HOT_EPISODES_API = "https://xyzrank.com/assets/hot-episodes.24ef12b57741554e245e301ea9240f8f.json"
 
 def get_podcast_info(url):
     try:
