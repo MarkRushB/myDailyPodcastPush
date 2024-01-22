@@ -110,15 +110,22 @@ def generate_data(date_list, recommendation_list, quote_list, url):
     return data
 
 def do_it():
-    url = get_date_url()
-    first_section_img, second_section_img, third_section_img = crop_image(url)
+    try:
+        url = get_date_url()
+        first_section_img, second_section_img, third_section_img = crop_image(url)
 
-    if first_section_img:
-        date_list = ocr(first_section_img)
-    if second_section_img:
-        recommendation_list = ocr(second_section_img)
-    if third_section_img:
-        quote_list = ocr(third_section_img)
-    
-    push_payload = generate_data(date_list, recommendation_list, quote_list, url)
-    push_ios_notification(BARK_API, push_payload)
+        if first_section_img:
+            date_list = ocr(first_section_img)
+        if second_section_img:
+            recommendation_list = ocr(second_section_img)
+        if third_section_img:
+            quote_list = ocr(third_section_img)
+
+        push_payload = generate_data(date_list, recommendation_list, quote_list, url)
+        push_ios_notification(BARK_API, push_payload)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+do_it()
