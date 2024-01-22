@@ -67,10 +67,6 @@ def crop_image(image_url):
         first_img = image.crop(first_section)
         second_img = image.crop(second_section)
         third_img = image.crop(third_section)
-
-        first_img.save("top_part.jpg")
-        second_img.save("middle_part.jpg")
-        third_img.save("bottom_part.jpg")
         
         return first_img, second_img, third_img
 
@@ -100,10 +96,10 @@ def generate_data(date_list, recommendation_list, quote_list, url):
     recommendation_string = next((item for item in recommendation_list if item.startswith('宜') or item.startswith('忌')), None)
     quote_string = ' '.join(quote_list[:-1])
     data = {
-        "body": quote_string,
+        "body": date_string + '\n' + '\n' + quote_string,
         "title": recommendation_string,
         "category": "myNotificationCategory",
-        # "icon": episode["logoURL"],
+        "icon": "https://github.com/MarkRushB/myDailyPush/blob/main/cal.png?raw=true",
         "group": "calendar",
         "url": url
     }
@@ -111,6 +107,7 @@ def generate_data(date_list, recommendation_list, quote_list, url):
 
 def do_it():
     try:
+        print(BARK_API)
         url = get_date_url()
         first_section_img, second_section_img, third_section_img = crop_image(url)
 
@@ -122,6 +119,7 @@ def do_it():
             quote_list = ocr(third_section_img)
 
         push_payload = generate_data(date_list, recommendation_list, quote_list, url)
+        
         push_ios_notification(BARK_API, push_payload)
 
     except Exception as e:
