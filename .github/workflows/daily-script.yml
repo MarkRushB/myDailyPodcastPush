@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests torch easyocr pillow
+        pip install requests torch==1.10.2 easyocr pillow
         
 
     - name: Run script
