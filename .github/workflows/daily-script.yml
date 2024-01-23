@@ -20,7 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests
+        pip install requests easyocr pillow
+        
 
     - name: Run script
       run: python dailyPush.py
